@@ -1,62 +1,78 @@
-<table mat-table [dataSource]="crewList" class="mat-elevation-z8">
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let crew">
-      <button mat-button color="primary">View</button>
-      <button mat-button color="accent">Edit</button>
-      <button mat-button color="warn" (click)="deleteCrew(crew.id)">
-        Delete
-      </button>
-    </td>
-  </ng-container>
+<div class="">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-3xl font-semibold text-indigo-900">Crew List</h1>
+    <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
+      Add Crew
+    </button>
+  </div>
 
-  <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef>First Name</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.firstName }}</td>
-  </ng-container>
+  <table mat-table [dataSource]="crewList" class="mat-elevation-z8">
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let crew">
+        <button mat-button color="primary">View</button>
+        <button mat-button color="accent">Edit</button>
+        <button mat-button color="warn" (click)="deleteCrew(crew.id)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef>Last Name</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.lastName }}</td>
-  </ng-container>
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.firstName }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="nationality">
-    <th mat-header-cell *matHeaderCellDef>Nationality</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.nationality }}</td>
-  </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.lastName }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.title }}</td>
-  </ng-container>
+    <ng-container matColumnDef="nationality">
+      <th mat-header-cell *matHeaderCellDef>Nationality</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.nationality }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="daysOnBoard">
-    <th mat-header-cell *matHeaderCellDef>Days On Board</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.daysOnBoard }}</td>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.title }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="dailyRate">
-    <th mat-header-cell *matHeaderCellDef>Daily Rate</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.dailyRate }}</td>
-  </ng-container>
+    <ng-container matColumnDef="daysOnBoard">
+      <th mat-header-cell *matHeaderCellDef>Days On Board</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.daysOnBoard }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="currency">
-    <th mat-header-cell *matHeaderCellDef>Currency</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.currency }}</td>
-  </ng-container>
+    <ng-container matColumnDef="dailyRate">
+      <th mat-header-cell *matHeaderCellDef>Daily Rate</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.dailyRate }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="totalIncome">
-    <th mat-header-cell *matHeaderCellDef>Total Income</th>
-    <td mat-cell *matCellDef="let crew">{{ crew.totalIncome }}</td>
-  </ng-container>
+    <ng-container matColumnDef="currency">
+      <th mat-header-cell *matHeaderCellDef>Currency</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.currency }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="certificates">
-    <th mat-header-cell *matHeaderCellDef>Certificates</th>
-    <td mat-cell *matCellDef="let crew">
-      <button mat-button>View Certificates</button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="totalIncome">
+      <th mat-header-cell *matHeaderCellDef>Total Income</th>
+      <td mat-cell *matCellDef="let crew">{{ crew.totalIncome }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <ng-container matColumnDef="certificates">
+      <th mat-header-cell *matHeaderCellDef>Certificates</th>
+      <td mat-cell *matCellDef="let crew">
+        <button mat-button (click)="showCertificates(crew.certificates)">
+          View Certificates
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class="mt-8 text-right text-lg font-semibold">
+    Total Income:
+    <span class="text-indigo-600">{{ totalIncomeSum }}</span>
+  </div>
+</div>
