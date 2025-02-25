@@ -41,7 +41,6 @@ export class CrewListComponent implements OnInit {
     this.crewService.deleteCrew(id);
     this.crewList = this.crewService.getCrewList();
   }
-
   showCertificates(certificates: Certificate[]) {
     this.dialog.open(CertificatesDialogComponent, {
       data: { certificates },

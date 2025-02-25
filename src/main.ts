@@ -6,6 +6,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,5 +28,6 @@ bootstrapApplication(AppComponent, {
         defaultLanguage: 'en',
       })
     ),
+    provideRouter(routes),
   ],
 }).catch((err) => console.error(err));

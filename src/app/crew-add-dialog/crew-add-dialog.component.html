@@ -58,6 +58,70 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
+    <div class="space-y-2">
+      <h2 class="text-lg font-semibold">Certificates</h2>
+
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="addCertificate()"
+        type="button"
+      >
+        Add Certificate
+      </button>
+
+      <div
+        *ngFor="let certificate of crew.certificates; let i = index"
+        class="grid grid-cols-2 gap-4 border border-gray-200 shadow-sm p-3 rounded relative"
+      >
+        <mat-form-field class="col-span-2 w-full">
+          <mat-label>Certificate Type</mat-label>
+          <mat-select [(ngModel)]="certificate.type" name="type-{{ i }}">
+            <mat-option *ngIf="certificateTypes.length === 0" disabled>
+              No certificate types available. Add first pls
+            </mat-option>
+            <mat-option
+              *ngFor="let type of certificateTypes"
+              [value]="type.name"
+            >
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Issue Date</mat-label>
+          <input
+            matInput
+            type="date"
+            class="!h-[30px]"
+            [(ngModel)]="certificate.issueDate"
+            name="issueDate-{{ i }}"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Expiry Date</mat-label>
+          <input
+            matInput
+            type="date"
+            class="!h-[30px]"
+            [(ngModel)]="certificate.expiryDate"
+            name="expiryDate-{{ i }}"
+          />
+        </mat-form-field>
+
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeCertificate(i)"
+          class="absolute top-1 right-1"
+          type="button"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
   </form>
 </div>
 

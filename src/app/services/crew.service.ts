@@ -15,7 +15,12 @@ export class CrewService {
       currency: 'USD',
       totalIncome: 2400,
       certificates: [
-        { type: 'A', issueDate: '2023-01-01', expiryDate: '2025-01-01' },
+        {
+          type: 'A',
+          issueDate: '2023-01-01',
+          expiryDate: '2025-01-01',
+          description: 'hellooo',
+        },
       ],
     },
   ];
@@ -33,7 +38,7 @@ export class CrewService {
       ...crew,
       id: this.crewList.length + 1,
       totalIncome: crew.daysOnBoard * crew.dailyRate,
-      certificates: [],
+      certificates: crew.certificates || [],
     };
 
     this.crewList.push(newCrew);

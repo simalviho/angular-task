@@ -61,8 +61,12 @@
     <ng-container matColumnDef="certificates">
       <th mat-header-cell *matHeaderCellDef>Certificates</th>
       <td mat-cell *matCellDef="let crew">
-        <button mat-button (click)="showCertificates(crew.certificates)">
-          View Certificates
+        <button
+          mat-button
+          color="accent"
+          (click)="showCertificates(crew.certificates)"
+        >
+          View Certificates ({{ crew.certificates.length }})
         </button>
       </td>
     </ng-container>

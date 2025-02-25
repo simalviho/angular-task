@@ -2,6 +2,7 @@ export interface Certificate {
   type: string;
   issueDate: string;
   expiryDate: string;
+  description: string;
 }
 
 export interface Crew {
