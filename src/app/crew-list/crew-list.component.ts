@@ -8,11 +8,21 @@ import { Crew, Certificate } from '../models/crew.model';
 import { CertificatesDialogComponent } from '../certificates-dialog/certificates-dialog.component';
 import { CrewAddDialogComponent } from '../crew-add-dialog/crew-add-dialog.component';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CrewEditDialogComponent } from '../crew-edit-dialog/crew-edit-dialog.component';
 
 @Component({
   selector: 'app-crew-list',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatDialogModule, MatIconModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    MatTableModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+  ],
   templateUrl: './crew-list.component.html',
   encapsulation: ViewEncapsulation.None,
 })
@@ -20,7 +30,6 @@ export class CrewListComponent implements OnInit {
   crewList: Crew[] = [];
 
   displayedColumns: string[] = [
-    'actions',
     'firstName',
     'lastName',
     'nationality',
@@ -28,9 +37,13 @@ export class CrewListComponent implements OnInit {
     'daysOnBoard',
     'dailyRate',
     'currency',
+    'discount',
     'totalIncome',
     'certificates',
+    'actions',
   ];
+
+  discountValues: { [id: number]: number } = {};
 
   constructor(
     private crewService: CrewService,
@@ -40,6 +53,10 @@ export class CrewListComponent implements OnInit {
 
   ngOnInit(): void {
     this.crewList = this.crewService.getCrewList();
+    this.crewList.forEach((crew) => {
+      this.discountValues[crew.id] = 0;
+    });
+    console.log('Varsayılan Crew Verisi:', this.crewList);
   }
 
   deleteCrew(id: number) {
@@ -51,6 +68,16 @@ export class CrewListComponent implements OnInit {
       data: { certificates },
     });
   }
+  getDiscountedIncome(crew: Crew): number {
+    return crew.totalIncome - (this.discountValues[crew.id] || 0);
+  }
+
+  getTotalIncome(): number {
+    return this.crewList.reduce(
+      (total, crew) => total + this.getDiscountedIncome(crew),
+      0
+    );
+  }
 
   openAddCrewDialog() {
     const dialogRef = this.dialog.open(CrewAddDialogComponent);
@@ -59,6 +86,21 @@ export class CrewListComponent implements OnInit {
       if (result) {
         this.crewService.addCrew(result);
         this.crewList = [...this.crewService.getCrewList()];
+      }
+    });
+  }
+
+  openEditCrewDialog(crew: Crew) {
+    const dialogRef = this.dialog.open(CrewEditDialogComponent, {
+      data: crew,
+    });
+
+    dialogRef.afterClosed().subscribe((updatedCrew) => {
+      if (updatedCrew) {
+        const index = this.crewList.findIndex((c) => c.id === updatedCrew.id);
+        if (index !== -1) {
+          this.crewList[index] = updatedCrew;
+        }
       }
     });
   }

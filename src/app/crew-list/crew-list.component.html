@@ -6,18 +6,17 @@
     </button>
   </div>
 
-  <table mat-table [dataSource]="crewList" class="mat-elevation-z8">
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
+  <table mat-table [dataSource]="crewList" class="mat-elevation-z8 w-full">
+    <ng-container matColumnDef="discount" class="">
+      <th mat-header-cell *matHeaderCellDef>Discount</th>
       <td mat-cell *matCellDef="let crew">
-        <button mat-button color="primary" (click)="viewCrew(crew.id)">
-          View
-        </button>
-
-        <button mat-button color="accent">Edit</button>
-        <button mat-button color="warn" (click)="deleteCrew(crew.id)">
-          Delete
-        </button>
+        <input
+          min="0"
+          type="number"
+          [(ngModel)]="discountValues[crew.id]"
+          (input)="getTotalIncome()"
+          class="border rounded px-2 py-1 w-16 !focus:outline-none"
+        />
       </td>
     </ng-container>
 
@@ -58,7 +57,9 @@
 
     <ng-container matColumnDef="totalIncome">
       <th mat-header-cell *matHeaderCellDef>Total Income</th>
-      <td mat-cell *matCellDef="let crew">{{ crew.totalIncome }}</td>
+      <td mat-cell *matCellDef="let crew">
+        {{ getDiscountedIncome(crew) | currency : crew.currency }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="certificates">
@@ -69,7 +70,23 @@
           color="accent"
           (click)="showCertificates(crew.certificates)"
         >
-          View Certificates ({{ crew.certificates.length }})
+          View ({{ crew.certificates.length }})
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let crew">
+        <button mat-button color="primary" (click)="viewCrew(crew.id)">
+          View
+        </button>
+        <button mat-button color="accent" (click)="openEditCrewDialog(crew)">
+          Edit
+        </button>
+
+        <button mat-button color="warn" (click)="deleteCrew(crew.id)">
+          Delete
         </button>
       </td>
     </ng-container>
@@ -80,6 +97,6 @@
 
   <div class="mt-8 text-right text-lg font-semibold">
     Total Income:
-    <span class="text-indigo-600">{{ totalIncomeSum }}</span>
+    <span class="text-indigo-600">{{ getTotalIncome() | currency }}</span>
   </div>
 </div>
