@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CrewService } from '../services/crew.service';
+import { Crew } from '../models/crew.model';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-crew-card',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, MatTabsModule, MatCardModule, MatTableModule],
   templateUrl: './crew-card.component.html',
-  styleUrl: './crew-card.component.css'
 })
-export class CrewCardComponent {
+export class CrewCardComponent implements OnInit {
+  crew: Crew = {} as Crew;
+  displayedColumns: string[] = ['type', 'issueDate', 'expiryDate'];
 
+  constructor(
+    private route: ActivatedRoute,
+    private crewService: CrewService
+  ) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.crew = this.crewService.getCrewById(id) || ({} as Crew);
+
+    this.crew.certificates = this.crew.certificates ?? [];
+  }
 }

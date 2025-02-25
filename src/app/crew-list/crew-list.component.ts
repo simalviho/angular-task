@@ -7,6 +7,7 @@ import { CrewService } from '../services/crew.service';
 import { Crew, Certificate } from '../models/crew.model';
 import { CertificatesDialogComponent } from '../certificates-dialog/certificates-dialog.component';
 import { CrewAddDialogComponent } from '../crew-add-dialog/crew-add-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crew-list',
@@ -31,7 +32,11 @@ export class CrewListComponent implements OnInit {
     'certificates',
   ];
 
-  constructor(private crewService: CrewService, private dialog: MatDialog) {}
+  constructor(
+    private crewService: CrewService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.crewList = this.crewService.getCrewList();
@@ -56,6 +61,10 @@ export class CrewListComponent implements OnInit {
         this.crewList = [...this.crewService.getCrewList()];
       }
     });
+  }
+
+  viewCrew(crewId: number) {
+    this.router.navigate(['/crew-card', crewId]);
   }
 
   get totalIncomeSum(): number {

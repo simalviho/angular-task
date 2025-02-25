@@ -43,4 +43,8 @@ export class CrewService {
 
     this.crewList.push(newCrew);
   }
+
+  getCrewById(id: number): Crew | undefined {
+    return this.crewList.find((crew) => crew.id === id);
+  }
 }
