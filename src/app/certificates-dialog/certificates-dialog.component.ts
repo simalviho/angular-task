@@ -20,12 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class CertificatesDialogComponent {
-  displayedColumns: string[] = [
-    'type',
-    'issueDate',
-    'expiryDate',
-    'description',
-  ];
+  displayedColumns: string[] = ['type', 'issueDate', 'expiryDate'];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { certificates: Certificate[] }

@@ -3,19 +3,33 @@
     {{ "ADD_CERTIFICATE" | translate }} Type
   </h2>
 
-  <form class="space-y-4">
+  <form class="space-y-4" #certificateTypeForm="ngForm">
     <mat-form-field class="w-full">
       <mat-label>{{ "TITLE" | translate }}</mat-label>
-      <input matInput [(ngModel)]="certificateType.name" name="name" />
+      <input
+        required
+        #name="ngModel"
+        matInput
+        [(ngModel)]="certificateType.name"
+        name="name"
+      />
+      <mat-error *ngIf="name.invalid && name.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>{{ "DESCRIPTION" | translate }}</mat-label>
       <textarea
+        required
+        #description="ngModel"
         matInput
         [(ngModel)]="certificateType.description"
         name="description"
       ></textarea>
+      <mat-error *ngIf="description.invalid && description.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <button
@@ -23,6 +37,7 @@
       color="primary"
       class="w-full"
       (click)="saveCertificateType()"
+      [disabled]="certificateTypeForm?.invalid"
     >
       {{ "SAVE" | translate }}
     </button>

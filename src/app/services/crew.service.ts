@@ -12,7 +12,7 @@ export class CrewService {
       title: 'Engineer',
       daysOnBoard: 10,
       dailyRate: 200,
-      currency: 'USD',
+      currency: 'EUR',
       totalIncome: 1400,
       certificates: [
         {
@@ -50,7 +50,7 @@ export class CrewService {
       title: 'Mechanicer',
       daysOnBoard: 10,
       dailyRate: 200,
-      currency: 'USD',
+      currency: 'EUR',
       totalIncome: 1200,
       certificates: [
         {
@@ -121,6 +121,8 @@ export class CrewService {
   }
 
   getCrewById(id: number): Crew | undefined {
+    const crew = this.crewList.find((crew) => crew.id === id);
+    console.log('data:', crew);
     return this.crewList.find((crew) => crew.id === id);
   }
 }

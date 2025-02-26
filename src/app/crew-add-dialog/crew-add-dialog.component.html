@@ -1,37 +1,72 @@
 <h1 mat-dialog-title>Add Crew</h1>
 
 <div mat-dialog-content>
-  <form class="space-y-3">
+  <form class="space-y-3" #crewForm="ngForm">
     <mat-form-field class="w-full">
       <mat-label>{{ "FIRST_NAME" | translate }}</mat-label>
-      <input matInput [(ngModel)]="crew.firstName" name="firstName" />
+      <input
+        matInput
+        required
+        [(ngModel)]="crew.firstName"
+        name="firstName"
+        #firstName="ngModel"
+      />
+      <mat-error *ngIf="firstName.invalid && firstName.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         {{ "LAST_NAME" | translate }}
       </mat-label>
-      <input matInput [(ngModel)]="crew.lastName" name="lastName" />
+
+      <input
+        required
+        matInput
+        [(ngModel)]="crew.lastName"
+        name="lastName"
+        #lastName="ngModel"
+      />
+      <mat-error *ngIf="lastName.invalid && lastName.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         {{ "NATIONALITY" | translate }}
       </mat-label>
-      <mat-select [(ngModel)]="crew.nationality" name="nationality">
+      <mat-select
+        #nationality="ngModel"
+        required
+        [(ngModel)]="crew.nationality"
+        name="nationality"
+      >
         <mat-option *ngFor="let n of nationalities" [value]="n">{{
           n
         }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="nationality.invalid && nationality.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         {{ "TITLE" | translate }}
       </mat-label>
-      <mat-select [(ngModel)]="crew.title" name="title">
+      <mat-select
+        #title="ngModel"
+        required
+        [(ngModel)]="crew.title"
+        name="title"
+      >
         <mat-option *ngFor="let t of titles" [value]="t">{{ t }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="title.invalid && title.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
@@ -39,12 +74,17 @@
         {{ "DAYS_ON_BOARD" | translate }}
       </mat-label>
       <input
+        #daysOnBoard="ngModel"
+        required
         matInput
         min="0"
         type="number"
         [(ngModel)]="crew.daysOnBoard"
         name="daysOnBoard"
       />
+      <mat-error *ngIf="daysOnBoard.invalid && daysOnBoard.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
@@ -52,23 +92,36 @@
         {{ "DAILY_RATE" | translate }}
       </mat-label>
       <input
+        #dailyRate="ngModel"
+        required
         matInput
         min="0"
         type="number"
         [(ngModel)]="crew.dailyRate"
         name="dailyRate"
       />
+      <mat-error *ngIf="dailyRate.invalid && dailyRate.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>
         {{ "CURRENCY" | translate }}
       </mat-label>
-      <mat-select [(ngModel)]="crew.currency" name="currency">
+      <mat-select
+        #currency="ngModel"
+        required
+        [(ngModel)]="crew.currency"
+        name="currency"
+      >
         <mat-option *ngFor="let c of currencies" [value]="c">{{
           c
         }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="currency.invalid && currency.touched">
+        {{ "REQUIRED_FIELD" | translate }}
+      </mat-error>
     </mat-form-field>
     <div class="space-y-2">
       <h2 class="text-lg font-semibold">{{ "CERTIFICATES" | translate }}</h2>

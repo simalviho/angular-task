@@ -58,7 +58,7 @@ export class CrewListComponent implements OnInit {
     this.crewList.forEach((crew) => {
       this.discountValues[crew.id] = 0;
     });
-    console.log('Varsayılan Crew Verisi:', this.crewList);
+    console.log('DATA:', this.crewList);
   }
 
   deleteCrew(id: number) {

@@ -8,7 +8,6 @@ export class CertificateTypeService {
 
   addCertificateType(certificateType: { name: string; description: string }) {
     this.certificateTypes.push(certificateType);
-    console.log('New Certificate Type Added:', this.certificateTypes);
   }
 
   getCertificateTypes() {

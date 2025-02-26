@@ -1,4 +1,5 @@
 {
+  "REQUIRED_FIELD": "This field is required.",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
   "NATIONALITY": "Nationality",

@@ -1,4 +1,5 @@
 {
+  "REQUIRED_FIELD": "Ce champ est obligatoire.",
   "FIRST_NAME": "Prénom",
   "LAST_NAME": "Nom de famille",
   "NATIONALITY": "Nationalité",
