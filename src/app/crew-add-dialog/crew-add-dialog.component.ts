@@ -68,11 +68,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { Crew, Certificate } from '../models/crew.model';
 import { CommonModule } from '@angular/common';
 import { CertificateTypeService } from '../services/certificate-type.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-crew-add-dialog',
   standalone: true,
   imports: [
+    TranslateModule,
     CommonModule,
     MatDialogModule,
     FormsModule,

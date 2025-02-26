@@ -11,11 +11,13 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Crew } from '../models/crew.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-crew-edit-dialog',
   standalone: true,
   imports: [
+    TranslateModule,
     CommonModule,
     MatDialogModule,
     FormsModule,

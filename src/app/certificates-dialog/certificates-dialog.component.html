@@ -6,26 +6,28 @@
     class="mat-elevation-z8 !shadow-none"
   >
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <th mat-header-cell *matHeaderCellDef>{{ "TYPE" | translate }}</th>
       <td mat-cell *matCellDef="let certificate">{{ certificate.type }}</td>
     </ng-container>
 
     <ng-container matColumnDef="issueDate">
-      <th mat-header-cell *matHeaderCellDef>Issue Date</th>
+      <th mat-header-cell *matHeaderCellDef>{{ "ISSUE_DATE" | translate }}</th>
       <td mat-cell *matCellDef="let certificate">
         {{ certificate.issueDate }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="expiryDate">
-      <th mat-header-cell *matHeaderCellDef>Expiry Date</th>
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "EXPIRE_DATE" | translate }}
+      </th>
       <td mat-cell *matCellDef="let certificate">
         {{ certificate.expiryDate }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <th mat-header-cell *matHeaderCellDef>{{ "DESCRIPTION" | translate }}</th>
       <td mat-cell *matCellDef="let certificate">
         {{ certificate.description }}
       </td>
@@ -37,5 +39,5 @@
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close>{{ "CANCEL" | translate }}</button>
 </div>

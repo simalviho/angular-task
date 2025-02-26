@@ -5,11 +5,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CertificateTypeService } from '../services/certificate-type.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-certificate-type-create',
   standalone: true,
   imports: [
+    TranslateModule,
     CommonModule,
     FormsModule,
     MatInputModule,

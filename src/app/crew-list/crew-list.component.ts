@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CrewEditDialogComponent } from '../crew-edit-dialog/crew-edit-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-crew-list',
   standalone: true,
   imports: [
+    TranslateModule,
     FormsModule,
     CommonModule,
     MatTableModule,

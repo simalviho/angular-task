@@ -1,14 +1,16 @@
 <mat-card class="p-6 max-w-lg mx-auto">
-  <h2 class="text-2xl font-bold mb-4">Add Certificate Type</h2>
+  <h2 class="text-2xl font-bold mb-4">
+    {{ "ADD_CERTIFICATE" | translate }} Type
+  </h2>
 
   <form class="space-y-4">
     <mat-form-field class="w-full">
-      <mat-label>Name</mat-label>
+      <mat-label>{{ "TITLE" | translate }}</mat-label>
       <input matInput [(ngModel)]="certificateType.name" name="name" />
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Description</mat-label>
+      <mat-label>{{ "DESCRIPTION" | translate }}</mat-label>
       <textarea
         matInput
         [(ngModel)]="certificateType.description"
@@ -22,7 +24,7 @@
       class="w-full"
       (click)="saveCertificateType()"
     >
-      Save
+      {{ "SAVE" | translate }}
     </button>
   </form>
 </mat-card>

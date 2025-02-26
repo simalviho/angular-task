@@ -1,7 +1,11 @@
 <nav class="bg-indigo-600 text-white p-4">
-  <div class="container mx-auto flex justify-between">
+  <div
+    class="container mx-auto flex md:flex-row flex-col justify-between items-center gap-4"
+  >
     <a routerLink="/" class="font-semibold">Crew Management</a>
-    <ul class="flex space-x-8">
+    <ul
+      class="flex md:flex-row flex-col md:gap-x-8 gap-4 items-center justify-center"
+    >
       <li>
         <a
           routerLink="/certificate-type-create"
@@ -11,6 +15,12 @@
       </li>
 
       <li><a routerLink="/" class="hover:underline cursor-pointer">Home</a></li>
+
+      <select (change)="onChange($event)" class="border px-2 py-1 rounded">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="pt">Português</option>
+      </select>
     </ul>
   </div>
 </nav>

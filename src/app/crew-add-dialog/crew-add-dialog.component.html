@@ -3,17 +3,21 @@
 <div mat-dialog-content>
   <form class="space-y-3">
     <mat-form-field class="w-full">
-      <mat-label>First Name</mat-label>
+      <mat-label>{{ "FIRST_NAME" | translate }}</mat-label>
       <input matInput [(ngModel)]="crew.firstName" name="firstName" />
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Last Name</mat-label>
+      <mat-label>
+        {{ "LAST_NAME" | translate }}
+      </mat-label>
       <input matInput [(ngModel)]="crew.lastName" name="lastName" />
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Nationality</mat-label>
+      <mat-label>
+        {{ "NATIONALITY" | translate }}
+      </mat-label>
       <mat-select [(ngModel)]="crew.nationality" name="nationality">
         <mat-option *ngFor="let n of nationalities" [value]="n">{{
           n
@@ -22,14 +26,18 @@
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Title</mat-label>
+      <mat-label>
+        {{ "TITLE" | translate }}
+      </mat-label>
       <mat-select [(ngModel)]="crew.title" name="title">
         <mat-option *ngFor="let t of titles" [value]="t">{{ t }}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Days On Board</mat-label>
+      <mat-label>
+        {{ "DAYS_ON_BOARD" | translate }}
+      </mat-label>
       <input
         matInput
         min="0"
@@ -40,7 +48,9 @@
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Daily Rate</mat-label>
+      <mat-label>
+        {{ "DAILY_RATE" | translate }}
+      </mat-label>
       <input
         matInput
         min="0"
@@ -51,7 +61,9 @@
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Currency</mat-label>
+      <mat-label>
+        {{ "CURRENCY" | translate }}
+      </mat-label>
       <mat-select [(ngModel)]="crew.currency" name="currency">
         <mat-option *ngFor="let c of currencies" [value]="c">{{
           c
@@ -59,7 +71,7 @@
       </mat-select>
     </mat-form-field>
     <div class="space-y-2">
-      <h2 class="text-lg font-semibold">Certificates</h2>
+      <h2 class="text-lg font-semibold">{{ "CERTIFICATES" | translate }}</h2>
 
       <button
         mat-raised-button
@@ -67,7 +79,7 @@
         (click)="addCertificate()"
         type="button"
       >
-        Add Certificate
+        {{ "ADD_CERTIFICATE" | translate }}
       </button>
 
       <div
@@ -75,7 +87,7 @@
         class="grid grid-cols-2 gap-4 border border-gray-200 shadow-sm p-3 rounded relative"
       >
         <mat-form-field class="col-span-2 w-full">
-          <mat-label>Certificate Type</mat-label>
+          <mat-label>Certificate {{ "TYPE" | translate }}</mat-label>
           <mat-select [(ngModel)]="certificate.type" name="type-{{ i }}">
             <mat-option *ngIf="certificateTypes.length === 0" disabled>
               No certificate types available. Add first pls
@@ -90,7 +102,7 @@
         </mat-form-field>
 
         <mat-form-field class="w-full">
-          <mat-label>Issue Date</mat-label>
+          <mat-label> {{ "ISSUE_DATE" | translate }}</mat-label>
           <input
             matInput
             type="date"
@@ -101,7 +113,7 @@
         </mat-form-field>
 
         <mat-form-field class="w-full">
-          <mat-label>Expiry Date</mat-label>
+          <mat-label> {{ "EXPIRE_DATE " | translate }}</mat-label>
           <input
             matInput
             type="date"
@@ -115,10 +127,19 @@
           mat-icon-button
           color="warn"
           (click)="removeCertificate(i)"
-          class="absolute top-1 right-1"
           type="button"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              fill="currentColor"
+              class="!w-4 !h-4 text-red-600"
+            >
+              <path
+                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+              /></svg
+          ></mat-icon>
         </button>
       </div>
     </div>
@@ -126,6 +147,8 @@
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <button mat-button (click)="close()">{{ "CANCEL" | translate }}</button>
+  <button mat-raised-button color="primary" (click)="save()">
+    {{ "SAVE" | translate }}
+  </button>
 </div>

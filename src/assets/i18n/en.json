@@ -1,6 +1,26 @@
 {
-  "TITLE": "Crew Management",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
-  "NATIONALITY": "Nationality"
+  "NATIONALITY": "Nationality",
+  "TITLE": "Title",
+  "DAYS_ON_BOARD": "Days On Board",
+  "DAILY_RATE": "Daily Rate",
+  "CURRENCY": "Currency",
+  "TOTAL_INCOME": "Total Income",
+  "CERTIFICATES": "Certificates",
+  "SELECT_LANGUAGE": "Select Language",
+  "VIEW": "View",
+  "EDIT": "Edit",
+  "DELETE": "Delete",
+  "HOME": "Home",
+  "ADD_CERTIFICATE": "Add Certificate",
+  "DESCRIPTION": "Description",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "ADD_CREW": "Add Crew",
+  "DISCOUNT": "Discount",
+  "CREW_LIST": "Crew List",
+  "TYPE": "Type",
+  "EXPIRE_DATE": " Expire Date",
+  "ISSUE_DATE": "Issue Date"
 }
